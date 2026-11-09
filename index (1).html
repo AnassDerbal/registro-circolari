@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#1f5fa6">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Circolari">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<title>Registro Circolari – ITTS Belluzzi-Da Vinci</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="bar">
+  <div class="brand"><span class="mark">BV</span><div><b>Registro circolari</b><small>ITTS Belluzzi-Da Vinci</small></div></div>
+  <div class="nav">
+    <button id="prev" aria-label="Mese precedente">‹</button>
+    <h1 id="title"></h1>
+    <button id="next" aria-label="Mese successivo">›</button>
+  </div>
+  <button class="today" id="today">Oggi</button>
+  <input class="search" id="q" type="search" placeholder="Cerca…" aria-label="Cerca circolare">
+  <div class="themes" id="themes"></div>
+</header>
+
+<div class="app">
+  <aside class="left">
+    <section class="box">
+      <label class="f" for="docente">Docente (nome per la firma)</label>
+      <input id="docente" placeholder="es. Maria Rossi" autocomplete="name">
+      <button class="btn full" id="btnNew">Nuova circolare</button>
+    </section>
+    <section class="box stat"><span>Da firmare</span><strong id="pending">0</strong></section>
+    <section class="box legend" id="legend"></section>
+  </aside>
+
+  <main>
+    <div class="grid" id="dows"></div>
+    <div class="grid" id="grid"></div>
+  </main>
+
+  <aside class="right" id="panel"></aside>
+</div>
+
+<dialog id="dlg">
+  <form id="form" method="dialog">
+    <h3 id="dlgTitle">Nuova circolare</h3>
+    <div class="fld"><label class="f" for="fTitle">Titolo *</label><input id="fTitle" required maxlength="120" placeholder="es. Convocazione collegio docenti"></div>
+    <div class="row">
+      <div><label class="f" for="fType">Tipo</label><select id="fType"></select></div>
+      <div><label class="f" for="fNum">N. circolare</label><input id="fNum" placeholder="es. 112"></div>
+    </div>
+    <div class="row three">
+      <div><label class="f" for="fDate">Data *</label><input id="fDate" type="date" required></div>
+      <div><label class="f" for="fStart">Inizio</label><input id="fStart" type="time"></div>
+      <div><label class="f" for="fEnd">Fine</label><input id="fEnd" type="time"></div>
+    </div>
+    <div class="fld"><label class="f" for="fPlace">Luogo o link (Meet, PDF Argo)</label><input id="fPlace" placeholder="Aula Magna oppure https://…"></div>
+    <div class="fld"><label class="f" for="fDesc">Descrizione</label><textarea id="fDesc" rows="3" maxlength="500"></textarea></div>
+    <label class="check"><input type="checkbox" id="fSign"> Richiede presa visione con firma</label>
+    <div class="foot"><button type="button" class="btn ghost" id="btnCancel">Annulla</button><button type="submit" class="btn">Salva</button></div>
+  </form>
+</dialog>
+<div class="toast" id="toast" role="status"></div>
+<script src="script.js"></script>
+<script>if('serviceWorker' in navigator)addEventListener('load',()=>navigator.serviceWorker.register('sw.js').catch(()=>{}));</script>
+</body>
+</html>
